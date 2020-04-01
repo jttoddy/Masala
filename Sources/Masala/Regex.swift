@@ -21,27 +21,27 @@
 
 import Foundation
 
-public typealias SFRegex = StaticString
+public typealias Regex = StaticString
 
 public extension String {
-    func matches(_ value: SFRegex) -> Bool {
+    func matches(_ value: Regex) -> Bool {
         return NSPredicate(format: "SELF MATCHES %@", "\(value)").evaluate(with: self)
     }
 }
 
 infix operator =~: ComparisonPrecedence
 
-public func =~ (_ lhs: String, rhs: SFRegex) -> Bool {
+public func =~ (_ lhs: String, rhs: Regex) -> Bool {
     return lhs.matches(rhs)
 }
 
 infix operator !~: ComparisonPrecedence
 infix operator ~!: ComparisonPrecedence
 
-public func !~ (_ lhs: String, rhs: SFRegex) -> Bool {
+public func !~ (_ lhs: String, rhs: Regex) -> Bool {
     return !lhs.matches(rhs)
 }
 
-public func ~! (_ lhs: String, rhs: SFRegex) -> Bool {
+public func ~! (_ lhs: String, rhs: Regex) -> Bool {
     return !lhs.matches(rhs)
 }
